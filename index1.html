@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Employee Salary Predictor</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body
+    class="w-full min-h-screen bg-green-600 flex items-center justify-center relative"
+  >
+    <div class="absolute bottom-0 left-0 w-full h-max">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+          fill="#91e890"
+          fill-opacity="0.4"
+          d="M0,256L0,32L180,32L180,192L360,192L360,96L540,96L540,256L720,256L720,192L900,192L900,96L1080,96L1080,96L1260,96L1260,288L1440,288L1440,320L1260,320L1260,320L1080,320L1080,320L900,320L900,320L720,320L720,320L540,320L540,320L360,320L360,320L180,320L180,320L0,320L0,320Z"
+        ></path>
+      </svg>
+    </div>
+    <div
+      class="bg-gray-100 p-6 rounded-lg shadow-md w-[35%] h-max flex flex-col items-center gap-8 p-3 relative z-100"
+      style="font-family: 'Inconsolata', monospace"
+    >
+      <h2 class="text-4xl font-bold text-green-800">Predict Employee Salary</h2>
+      <form method="POST" action="/predict" class="flex flex-col gap-4 w-full">
+        <div class="w-full flex flex-col justify-center">
+          <label for="" class="text-md font-semibold text-green-900"
+            >Job Type</label
+          >
+          <input
+            type="text"
+            name="jobType"
+            placeholder="CTO, CEO, ..."
+            class="border-b border-b-gray-500 outline-none focus:border-b-2 focus:border-b-gray-700 focus:bg-gray-200 p-2 hover:bg-gray-200 rounded-t-lg transition duration-200 ease-in-out"
+          />
+        </div>
+
+        <div class="w-full flex flex-col justify-center">
+          <label for="" class="text-md font-semibold text-green-900"
+            >Degree</label
+          >
+          <input
+            type="text"
+            name="degree"
+            placeholder="Masters, Bachelor, ..."
+            class="border-b border-b-gray-500 outline-none focus:border-b-2 focus:border-b-gray-700 focus:bg-gray-200 p-2 hover:bg-gray-200 rounded-t-lg transition duration-200 ease-in-out"
+          />
+        </div>
+        <div class="w-full flex flex-col justify-center">
+          <label for="" class="text-md font-semibold text-green-900"
+            >Major</label
+          >
+          <input
+            type="text"
+            name="major"
+            placeholder="Biology, Computer Science, ..."
+            class="border-b border-b-gray-500 outline-none focus:border-b-2 focus:border-b-gray-700 focus:bg-gray-200 p-2 hover:bg-gray-200 rounded-t-lg transition duration-200 ease-in-out"
+          />
+        </div>
+
+        <div class="w-full flex flex-col justify-center">
+          <label for="" class="text-md font-semibold text-green-900"
+            >Industry</label
+          >
+          <input
+            type="text"
+            name="industry"
+            placeholder="Health, IT, ..."
+            class="border-b border-b-gray-500 outline-none focus:border-b-2 focus:border-b-gray-700 focus:bg-gray-200 p-2 hover:bg-gray-200 rounded-t-lg transition duration-200 ease-in-out"
+          />
+        </div>
+
+        <div class="w-full flex flex-row justify-between gap-4">
+          <div class="w-[40%] flex flex-col justify-center">
+            <label for="" class="text-md font-semibold text-green-900"
+              >Years of Experience</label
+            >
+            <input
+              type="number"
+              step="any"
+              name="yearsExperience"
+              placeholder="Years of experience"
+              class="border-b border-b-gray-500 outline-none focus:border-b-2 focus:border-b-gray-700 focus:bg-gray-200 p-2 hover:bg-gray-200 rounded-t-lg transition duration-200 ease-in-out"
+            />
+          </div>
+          <div class="w-[60%] flex flex-col justify-center">
+            <label for="" class="text-md font-semibold text-green-900"
+              >Distance from Metropolis (miles)</label
+            >
+            <input
+              type="number"
+              step="any"
+              name="milesFromMetropolis"
+              placeholder="Enter distance in miles"
+              class="border-b border-b-gray-500 outline-none focus:border-b-2 focus:border-b-gray-700 focus:bg-gray-200 p-2 hover:bg-gray-200 rounded-t-lg transition duration-200 ease-in-out"
+            />
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="text-2xl font-semibold text-gray-100 w-full h-12 rounded-lg bg-green-500 cursor-pointer hover:bg-green-600 transition duration-200 ease-in-out"
+        >
+          Predict Salry
+        </button>
+      </form>
+      <div class="w-full flex flex-col justify-center items-center">
+         {% if prediction_text %}
+      <h3 class="text-2xl font-normal text-green-600">{{ prediction_text }}</h3>
+      {% endif %}
+      </div>
+     
+    </div>
+  </body>
+</html>
